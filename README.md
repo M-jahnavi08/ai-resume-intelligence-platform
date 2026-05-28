@@ -132,5 +132,5 @@ Text Extraction (pdfplumber)
 
 ## 👩‍💻 Developer
 
-**Lochana** — Built as a full-stack AI + ML portfolio project.
+**Jahnavi** — Built as a full-stack AI + ML portfolio project.
 
