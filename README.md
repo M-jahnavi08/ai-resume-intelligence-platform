@@ -1,136 +1,104 @@
 # 🚀 AI Resume Intelligence Platform
 
-An end-to-end AI + ML powered resume analysis platform built with Python, Streamlit, Google Gemini AI, and scikit-learn.
+### An end-to-end AI + ML powered resume analysis platform
+
+[![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.35-red?style=for-the-badge&logo=streamlit)](https://streamlit.io)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.4-orange?style=for-the-badge&logo=scikit-learn)](https://scikit-learn.org)
+[![Groq AI](https://img.shields.io/badge/Groq_AI-LLaMA_3.3_70B-purple?style=for-the-badge)](https://groq.com)
+[![SQLite](https://img.shields.io/badge/SQLite-Database-green?style=for-the-badge&logo=sqlite)](https://sqlite.org)
 
 ---
 
-## ✨ Features
+## Screenshots
 
-| Feature | Description |
-|---|---|
-| 📊 ATS Scoring | Rule-based ATS score using required skill matching |
-| 🧠 ML Job Match | TF-IDF + Cosine Similarity for real ML-based job matching |
-| 🔍 Skill Gap Analysis | Detects skills missing from JD using NLP |
-| 📋 Section Detector | Checks resume structure (Education, Projects, etc.) |
-| 🤖 AI Summary | Gemini AI generated professional resume summary |
-| 🔍 AI Feedback | Detailed recruiter-style resume feedback |
-| ✉️ Cover Letter | AI-generated tailored cover letter |
-| 🎯 Interview Prep | Personalized interview questions from Gemini |
-| 🚀 Recommendations | Career path, project, and skill recommendations |
-| 🔐 Auth System | Secure login with PBKDF2 password hashing |
-| 📂 History | Per-user resume analysis history |
+### Landing Page
+![Landing Page](screenshots/landing.png)
 
----
+### Login and Signup
+![Login](screenshots/login.png)
 
-## 🛠 Tech Stack
+### Analytics Dashboard
+![Dashboard](screenshots/dashboard.png)
 
-- **Frontend:** Streamlit, Custom CSS, Glassmorphism UI
-- **AI:** Google Gemini 2.0 Flash API
-- **ML:** scikit-learn (TF-IDF, Cosine Similarity)
-- **NLP:** Custom skill detection, keyword density, section parsing
-- **Database:** SQLite (users + resume analytics)
-- **PDF Parsing:** pdfplumber
-- **Charts:** Plotly
+### ML Analysis
+![ML Analysis](screenshots/ml_analysis.png)
+
+### AI Features
+![AI Features](screenshots/ai_features.png)
 
 ---
 
-## 🚀 Run Locally
+## Features
 
-```bash
-# 1. Clone the repo
-git clone https://github.com/yourusername/ai-resume-platform.git
-cd ai-resume-platform
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Add your Gemini API key
-# Edit .streamlit/secrets.toml:
-# GEMINI_API_KEY = "your_key_here"
-# Get free key at: https://aistudio.google.com
-
-# 4. Run
-streamlit run app.py
-```
+- ATS Scoring — Rule-based ATS score using required skill matching
+- ML Job Match — TF-IDF + Cosine Similarity for real ML-based job matching
+- Skill Gap Analysis — Detects skills missing from JD using NLP
+- AI Summary — Groq LLaMA 3.3 70B generated professional resume summary
+- AI Feedback — Detailed recruiter-style resume feedback
+- Cover Letter — AI-generated tailored cover letter
+- Interview Prep — Personalized interview questions by difficulty level
+- Auth System — Secure login with PBKDF2-HMAC-SHA256 password hashing
+- History — Per-user resume analysis history with all scores
 
 ---
 
-## 📁 Project Structure
+## Tech Stack
 
-```
-resume-analyzer/
-├── app.py                        # Main controller
-├── components/
-│   ├── dashboard.py              # ATS analytics dashboard
-│   ├── ml_dashboard.py           # ML analysis dashboard
-│   ├── ai_features.py            # Gemini AI tools
-│   ├── recommendations.py        # Career recommendations
-│   ├── landing_page.py           # Landing page UI
-│   └── auth_ui.py                # Login / Signup UI
-├── utils/
-│   ├── parser.py                 # PDF text extraction
-│   ├── skill_engine.py           # Rule-based scoring
-│   └── ml_engine.py              # TF-IDF ML engine
-├── database/
-│   ├── db.py                     # Resume database
-│   └── auth_db.py                # User auth database
-├── assets/
-│   └── styles.css                # Full UI styling
-├── .streamlit/
-│   └── secrets.toml              # API keys (not committed)
-└── requirements.txt
-```
+- Frontend: Streamlit, Custom CSS, Glassmorphism UI
+- AI: Groq API — LLaMA 3.3 70B
+- ML: scikit-learn (TF-IDF Vectorization, Cosine Similarity)
+- NLP: Custom skill detection, keyword density, section parsing
+- Database: SQLite
+- PDF Parsing: pdfplumber
+- Charts: Plotly
 
 ---
 
-## 🔒 Security
+## Run Locally
 
-- Passwords hashed using **PBKDF2-HMAC-SHA256** with random salt
+1. Clone the repo
+   git clone https://github.com/M-jahnavi08/ai-resume-intelligence-platform.git
+
+2. Install dependencies
+   pip install -r requirements.txt
+
+3. Add your Groq API key in .streamlit/secrets.toml
+   GROQ_API_KEY = your_key_here
+   Get free key at https://console.groq.com
+
+4. Run
+   python -m streamlit run app.py
+
+---
+
+## ML Architecture
+
+Resume PDF
+    |
+    Text Extraction (pdfplumber)
+    |
+    TF-IDF Vectorizer -> Cosine Similarity -> Job Match Score (40%)
+    |
+    Keyword Density Scoring -> Skill Coverage (30%)
+    |
+    Section Detector (regex NLP) -> Structure Score (30%)
+    |
+    Weighted Combination -> Final ML Resume Score
+
+---
+
+## Security
+
+- Passwords hashed using PBKDF2-HMAC-SHA256 with random salt
 - 100,000 iterations — industry standard
 - No plain-text passwords stored anywhere
 
 ---
 
-## 🧠 ML Architecture
+## Developer
 
-```
-Resume PDF
-    │
-    ▼
-Text Extraction (pdfplumber)
-    │
-    ├──► TF-IDF Vectorizer ──► Cosine Similarity ──► Job Match Score
-    │
-    ├──► Keyword Density Scoring ──► Skill Coverage %
-    │
-    ├──► Section Detector (regex NLP) ──► Structure Score
-    │
-    └──► Weighted Combination ──► Final ML Resume Score
-```
+Mommineedi Jahnavi Satya
 
----
-
-## 📊 Scoring System
-
-| Score | Weight | Method |
-|---|---|---|
-| TF-IDF Job Match | 40% | scikit-learn cosine similarity |
-| Keyword Density | 30% | Custom NLP frequency analysis |
-| Section Quality | 30% | Regex-based section detection |
-
----
-
-## 🌐 Deploy on Streamlit Cloud
-
-1. Push to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your repo
-4. Add `GEMINI_API_KEY` in Secrets
-5. Deploy — get a public URL instantly
-
----
-
-## 👩‍💻 Developer
-
-**Jahnavi** — Built as a full-stack AI + ML portfolio project.
-
+LinkedIn: https://linkedin.com/in/mommineedi-jahnavisatya-b8955a352
+GitHub: https://github.com/M-jahnavi08
